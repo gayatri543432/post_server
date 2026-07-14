@@ -51,7 +51,7 @@ app.get("/posts", (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error fetching blogs"
+      message: "Error fetching posts"
     });
   }
 });
@@ -60,24 +60,24 @@ app.get("/posts/:id", (req, res) => {
   try {
     const id = Number(req.params.id);
 
-    const blog = posts.find(post => post.id === id);
+    const Post = posts.find(post => post.id === id);
 
-    if (!blog) {
+    if (!Post) {
       return res.status(404).json({
         success: false,
-        message: `Blog with id ${id} not found`
+        message: `Post with id ${id} not found`
       });
     }
 
     res.status(200).json({
       success: true,
-      data: blog
+      data: Post
     });
 
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error fetching blog"
+      message: "Error fetching Post"
     });
   }
 });
@@ -94,7 +94,7 @@ app.post("/posts", (req, res) => {
       });
     }
 
-    const newBlog = {
+    const newPost = {
       id: Date.now(),
       title,
       body,
@@ -103,18 +103,18 @@ app.post("/posts", (req, res) => {
       updatedAt: null
     };
 
-    posts.unshift(newBlog);
+    posts.unshift(newPost);
 
     res.status(201).json({
       success: true,
-      data: newBlog,
-      message: "Blog created successfully"
+      data: newPost,
+      message: "Post created successfully.."
     });
 
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error creating blog"
+      message: "Error creating Post"
     });
   }
 });
@@ -129,7 +129,7 @@ app.patch("/posts/:id", (req, res) => {
     if (index === -1) {
       return res.status(404).json({
         success: false,
-        message: `Blog with id ${id} not found`
+        message: `Post with id ${id} not found`
       });
     }
 
@@ -180,13 +180,13 @@ app.delete("/posts/:id", (req, res) => {
     res.status(200).json({
       success: true,
       data: posts,
-      message: "Blog deleted successfully"
+      message: "Post deleted successfully"
     });
 
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error deleting blog"
+      message: "Error deleting Post"
     });
   }
 });
