@@ -114,7 +114,7 @@ app.post("/posts", (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error creating Post"
+      message: "Error while creating Post"
     });
   }
 });
@@ -156,7 +156,7 @@ app.patch("/posts/:id", (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error updating blog"
+      message: "Error updating Post"
     });
   }
 });
@@ -171,7 +171,7 @@ app.delete("/posts/:id", (req, res) => {
     if (index === -1) {
       return res.status(404).json({
         success: false,
-        message: `Blog with id ${id} not found`
+        message: `Post with id ${id} not found`
       });
     }
 
